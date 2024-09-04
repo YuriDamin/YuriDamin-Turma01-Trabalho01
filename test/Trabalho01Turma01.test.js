@@ -114,4 +114,21 @@ describe('GerenciadorDeTarefas', () => {
         });
     });
 
+    test('deve atualizar a prioridade de uma tarefa existente', () => {
+        gerenciador.adicionarTarefa({ id: 1, descricao: 'Tarefa 1', concluida: false, prioridade: 2 });
+
+        gerenciador.atualizarPrioridade(1, 5);
+
+        const tarefa = gerenciador.buscarTarefaPorId(1);
+        expect(tarefa.prioridade).toBe(5);
+    });
+
+
+    test('deve adicionar uma tag a uma tarefa existente', () => {
+
+        gerenciador.adicionarTagATarefa(1, 'Tag1');
+
+        const tarefa = gerenciador.buscarTarefaPorId(1);
+        expect(tarefa.tags).toContain('Tag1');
+    });
 });
